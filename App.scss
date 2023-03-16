@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Satisfy&display=swap');
+
+/* SCSS HEX */
+$raisin-black: #201e1fff;
+$coquelicot: #ff4000ff;
+$atomic-tangerine: #faaa8dff;
+$antique-white: #feefddff;
+$moonstone: #50b2c0ff;
+
+
+// common styles================
+body{
+    font-family: 'Poppins', sans-serif;
+}
+// header styles
+@mixin header($fontSize, $color, $fontWeight) {
+    font-size: $fontSize;
+    color: $color;
+    font-weight: $fontWeight;
+}
+.h1{
+    @include header(30px, $moonstone, 700)  
+}
