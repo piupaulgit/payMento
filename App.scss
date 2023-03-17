@@ -23,6 +23,21 @@ body{
 .h1{
     @include fontStyle(30px, $moonstone, 700, 30px, 20px)  
 }
+.h3{
+    @include fontStyle(15px, $raisin-black, 700, 0px, 5px)  
+}
 .bodyCopy{
     @include fontStyle(15px, $raisin-black, 400, 0px, 30px)  
+}
+.pb0{
+    padding-bottom: 0;
+}
+.colorMoonstone{
+    color: $moonstone;
+}
+.centeredView{
+    flex: 1;
+    justify-content: 'center';
+    align-items: 'center';
+    margin-top: 22px
 }

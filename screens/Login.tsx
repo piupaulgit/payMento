@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Image, StyleSheet, Text, View } from 'react-native';
+import { Button, Image, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import { login } from '../assets/images';
 const appStyles = require('../App.scss')
 
@@ -8,18 +8,25 @@ const smallCircleTopVal = '1%';
 const bigCircleLeftVal = '50%';
 const bigCircleTopVal = '50%';
 
-const Login = () => {
+const Login = (props:any) => {
+  const moveToDashboard = () => {
+    props.navigation.navigate('Dashboard')
+  }
   return (
-    <View style={styles.loginScreen}>
-        <View style={styles.smallCircle}/>
-        <View style={styles.bigCircle}/>
-        <View style={styles.loginImage}>
-            <Image source={login} style={{width: 178, height: 392}}/>
+    <SafeAreaView>
+        <View style={styles.loginScreen}>
+          <View style={styles.smallCircle}/>
+          <View style={styles.bigCircle}/>
+          <View>
+            <View style={styles.loginImage}>
+                <Image source={login} style={{width: 178, height: 392}}/>
+            </View>
+            <Text style={appStyles.h1}>Manage your buddies to calculate</Text>
+            <Text style={appStyles.bodyCopy}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</Text>
+            <Button title='Login With Google' onPress={moveToDashboard}/>
+          </View>
         </View>
-        <Text style={appStyles.h1}>Manage your buddies to calculate</Text>
-        <Text style={appStyles.bodyCopy}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</Text>
-        <Button title='Login With Google'/>
-    </View>
+    </SafeAreaView>
   )
 }
 
@@ -28,6 +35,9 @@ const styles = StyleSheet.create({
     position:'relative',
     paddingLeft: 30,
     paddingRight: 30,
+    display:'flex',
+    alignItems:'center',
+    justifyContent:'center',
   },
   loginImage:{
     display: 'flex',
