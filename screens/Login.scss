@@ -1,0 +1,22 @@
+.loginScreen{
+    position: relative;
+}
+.smallCircle{
+    height: 194px;
+    width: 194px;
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    background: red;
+    content: '';
+    border-radius: 50%;
+}
+.bigCircle{
+    height: 343px;
+    width: 343px;
+    position: absolute;
+    top: 90%;
+    right: 10%;
+    background-color: #D9D9D9;
+    content: '';
+}

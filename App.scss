@@ -13,11 +13,16 @@ body{
     font-family: 'Poppins', sans-serif;
 }
 // header styles
-@mixin header($fontSize, $color, $fontWeight) {
+@mixin fontStyle($fontSize, $color, $fontWeight, $topSpace, $bottomSpace) {
     font-size: $fontSize;
     color: $color;
     font-weight: $fontWeight;
+    padding-top: $topSpace;
+    padding-bottom: $bottomSpace;
 }
 .h1{
-    @include header(30px, $moonstone, 700)  
+    @include fontStyle(30px, $moonstone, 700, 30px, 20px)  
+}
+.bodyCopy{
+    @include fontStyle(15px, $raisin-black, 400, 0px, 30px)  
 }
