@@ -13,20 +13,18 @@ const Login = (props:any) => {
     props.navigation.navigate('Dashboard')
   }
   return (
-    <SafeAreaView>
-        <View style={styles.loginScreen}>
-          <View style={styles.smallCircle}/>
-          <View style={styles.bigCircle}/>
-          <View>
-            <View style={styles.loginImage}>
-                <Image source={login} style={{width: 178, height: 392}}/>
-            </View>
-            <Text style={appStyles.h1}>Manage your buddies to calculate</Text>
-            <Text style={appStyles.bodyCopy}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</Text>
-            <Button title='Login With Google' onPress={moveToDashboard}/>
-          </View>
+    <View style={styles.loginScreen}>
+      <View style={styles.smallCircle}/>
+      <View style={styles.bigCircle}/>
+      <View>
+        <View style={styles.loginImage}>
+            <Image source={login} style={{width: 178, height: 392}}/>
         </View>
-    </SafeAreaView>
+        <Text style={appStyles.h1}>Manage your buddies to calculate</Text>
+        <Text style={appStyles.bodyCopy}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</Text>
+        <Button title='Login With Google' onPress={moveToDashboard}/>
+      </View>
+    </View>
   )
 }
 
@@ -35,9 +33,9 @@ const styles = StyleSheet.create({
     position:'relative',
     paddingLeft: 30,
     paddingRight: 30,
-    display:'flex',
+    flex: 1,
     alignItems:'center',
-    justifyContent:'center',
+    justifyContent:'center'
   },
   loginImage:{
     display: 'flex',
