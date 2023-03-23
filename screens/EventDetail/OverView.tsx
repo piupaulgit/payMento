@@ -1,69 +1,87 @@
+import Checkbox from 'expo-checkbox';
 import React from 'react'
-import { View,Text,SafeAreaView, StyleSheet, FlatList, Pressable, Button } from 'react-native'
+import { View,Text,SafeAreaView, StyleSheet, FlatList, Pressable, Button, ScrollView } from 'react-native'
 const appStyles = require('../../App.scss')
 import { Table, TableWrapper, Row, Rows, Col, Cols, Cell } from 'react-native-table-component';
-import { IMemeber } from '../../interfaces/member';
-import Ionicons from '@expo/vector-icons/Ionicons';
+import { IItem, IStatus } from '../../interfaces/event';
 
-const data = {
-  tableHead: ['Item', 'Value', 'members', 'spent by', 'Action'],
-  tableData: [
-    ['Train', '200', '3', '4', '200'],
-    ['Hotel', '5000', 'c', 'd', 5000],
-    ['Food', '300', '3', '456','300'],
-    ['Ticket', '800', 'c', 'd', '800']
-  ]
-}
-
-const group:IMemeber[] = [
+const items:IItem[] = [
   {
-    name: 'Deep',
-    mobileNumber: 7897979789797,
-    id: '9090'
+    title: 'Train fare',
+    value: 400,
+    spentBy: 'Deep',
+    members: ['Piu','Deep','kunal'],
+    date: '12/12/23',
+    status: IStatus.OPEN
   },
   {
-    name: 'Piu',
-    mobileNumber: 898988989,
-    id: '9090'
-  }
+    title: 'Hotel',
+    value: 500,
+    spentBy: 'Piu',
+    members: ['Piu','Deep','kunal'],
+    date: '12/12/23',
+    status: IStatus.CLOSED
+  },
+  {
+    title: 'Flight',
+    value: 500,
+    spentBy: 'Piu',
+    members: ['Piu','Deep','kunal'],
+    date: '12/12/23',
+    status: IStatus.OPEN
+  },
+  {
+    title: 'Food',
+    value: 500,
+    spentBy: 'Piu',
+    members: ['Piu','Deep','kunal'],
+    date: '12/12/23',
+    status: IStatus.OPEN
+  },
 ]
 
 const OverView = () => {
   return (
-    <SafeAreaView style={styles.pageContainer}>
-      <View>
-        <Text style={[appStyles.h2, {marginBottom: 10}]}>Manali Trip</Text>
-        <Text style={appStyles.bodyCopy}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae ea, veniam repellendus nobis saepe illum ullam, excepturi nemo.</Text>
-        <View style={{marginTop: 20}}>
-          <View style={{marginBottom: 20}}>
-            <Table borderStyle={{borderWidth: 2, borderColor: '#201e1fff'}}>
-              <Row data={data.tableHead} style={styles.head} textStyle={styles.text}/>
-              <Rows data={data.tableData} textStyle={styles.text}/>
-            </Table>
-          </View>
-          <Button title='Add new Item'/>
+    <ScrollView>
+      <View style={styles.pageContainer}>
+        <View style={[styles.eventHeader]}>
+          <Text style={[appStyles.h2, {marginBottom: 10}]}>Manali Trip</Text>
+          <Button title='Add Item'/>
         </View>
+        <Text style={[appStyles.bodyCopy, {marginBottom: 20, marginTop: 10}]}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae ea, veniam repellendus nobis saepe illum ullam, excepturi nemo.</Text>
         <View>
-          <Text style={[appStyles.h3, {marginTop: 20, marginBottom: 10}]}>Group</Text>
-          <FlatList
-            data={group}
-            renderItem={({item}) => 
-              <View style={styles.eachMember}>
-                <Text style={appStyles.bodyCopy}>{item.name}</Text>
-                <View>
-                  <Pressable>
-                    <Ionicons name='trash' size={20}/>
-                  </Pressable>
+          { items && items.length > 0 && items.map((item:IItem) => {
+            return (
+                <View style={styles.itemHolder}>
+                  <View style={styles.itemHeader}>
+                    <View>
+                      <Text style={[appStyles.h3, {marginBottom: 0}]}>{item.title}</Text>
+                      <Text style={[appStyles.smallText, appStyles.mutedText]}>{item.spentBy}</Text>
+                    </View>
+                    <View>
+                      <Checkbox value={item.status === 'OPEN' ? true : false } color={item.status === 'OPEN' ? '#000' : undefined}/>
+                    </View>
+                  </View>
+                  <View style={styles.itemFooter}>
+                    <Text>{item.date}</Text>
+                    <View style={styles.membersHolder}>
+                      { item.members && item.members.map((member) => {
+                        return (
+                          <View style={styles.eachMember}>
+                            <Text style={styles.memberName}>{member.split('')[0]}</Text>
+                          </View>
+                        )
+                      })
+                      }
+                    </View>
+                  </View>
                 </View>
-              </View>
-            }
-          />
-          <View>
-            <Button title='Add new Member'/>
-          </View>
+            )
+          })
+          }
         </View>
       </View>
-    </SafeAreaView>
+    </ScrollView>
   )
 }
 
@@ -74,17 +92,60 @@ const styles = StyleSheet.create({
   container: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
   head: { height: 40, backgroundColor: '#ff4000' },
   text: { margin: 6 },
-  eachMember: {
+  eventHeader: {
+    display: 'flex', 
+    justifyContent:'space-between', 
+    flexDirection:'row', 
+    marginBottom: 10, 
+    alignItems:'center'
+  },
+  itemHolder:{
     backgroundColor: '#fff',
-    borderRadius: 3,
-    marginBottom:5,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 15,
+    marginBottom:15,
+    shadowColor: '#171717',
+    shadowOffset: {width: -1, height: 1},
+    shadowOpacity: 0.1,
+    shadowRadius: 5
+  },
+  itemHeader: {
     display: 'flex',
     flexDirection: 'row',
-    paddingTop:10,
+    justifyContent: 'space-between',
+    borderBottomWidth: 1,
+    borderColor: '#efefef',
     paddingBottom: 10,
-    paddingLeft: 10,
-    paddingRight: 10,
-    justifyContent:'space-between'
+    alignItems: 'center'
+  },
+  itemFooter:{
+    paddingTop: 15,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  membersHolder: {
+    display: 'flex',
+    flexDirection: 'row'
+  },
+  eachMember: {
+    height: 20,
+    width: 20,
+    backgroundColor: 'red',
+    color: '#fff',
+    borderRadius: 20,
+    display: 'flex',
+    borderColor: '#fff',
+    borderWidth: 1,
+    marginLeft: -5
+  },
+  memberName:{
+    color:'#fff',
+    justifyContent: 'center',
+    textAlign: 'center',
+    fontSize: 10,
+    lineHeight: 16
   }
 })
 

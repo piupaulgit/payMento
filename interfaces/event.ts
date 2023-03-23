@@ -1,8 +1,8 @@
 import { IMemeber } from "./member";
 
 export enum IStatus {
-    ONGOING = "ONGOING",
-    COMPLETED = "COMPLETED"
+    OPEN = "OPEN",
+    CLOSED = "CLOSED"
 }
 export interface IEventList {
     name: String,
@@ -11,5 +11,14 @@ export interface IEventList {
     date: string,
     group: IMemeber[],
     image?: string,
+    status: IStatus
+}
+
+export interface IItem {
+    title: string,
+    value: number,
+    spentBy: string,
+    members: string[],
+    date: string,
     status: IStatus
 }

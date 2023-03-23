@@ -17,9 +17,9 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {/* <Stack.Screen name="Login" component={Login} options={{ headerShown: false }}/>
+        <Stack.Screen name="Login" component={Login} options={{ headerShown: false }}/>
         <Stack.Screen name="Dashboard" component={Dashboard} />
-        <Stack.Screen name="Add Event" component={AddEvent} /> */}
+        <Stack.Screen name="Add Event" component={AddEvent} />
         <Stack.Screen name="Event Detail" component={EventDetail} />
       </Stack.Navigator>
 
