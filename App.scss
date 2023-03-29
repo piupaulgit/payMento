@@ -1,11 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Satisfy&display=swap');
 
 /* SCSS HEX */
-$raisin-black: #201e1fff;
+$black: #201e1fff;
 $coquelicot: #ff4000ff;
 $atomic-tangerine: #faaa8dff;
 $antique-white: #feefddff;
 $moonstone: #50b2c0ff;
+$yellow: #FFC75F;
 
 
 // common styles================
@@ -19,16 +20,16 @@ body{
     font-weight: $fontWeight;
 }
 .h1{
-    @include fontStyle(30px, $moonstone, 700)  
+    @include fontStyle(30px, $black, 700)  
 }
 .h2{
     @include fontStyle(22px, $moonstone, 700)  
 }
 .h3{
-    @include fontStyle(15px, $raisin-black, 700)  
+    @include fontStyle(15px, $black, 700)  
 }
 .bodyCopy{
-    @include fontStyle(15px, $raisin-black, 400)  
+    @include fontStyle(15px, $black, 400)  
 }
 .pb0{
     padding-bottom: 0;
@@ -46,4 +47,19 @@ body{
 }
 .mutedText{
     color: #b2b2b2;
+}
+.button{
+    background-color: #333;
+    padding: 15px 10px;
+    border-radius: 50px;
+}
+.buttonText{
+    text-align: center;
+    font-size: 15px;
+}
+.bgBlack{
+    background-color: $yellow;
+}
+.textBlack{
+    color: $black;
 }
